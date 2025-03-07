@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gabriel Zefaj – Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- HERO & NAV -->
+  <header class="hero">
+    <nav class="navbar">
+      <ul>
+        <!-- Removed 'Home' -->
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#cv">CV</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content fade-in-down">
+      <h1>Gabriel Zefaj</h1>
+      <p class="subtitle fade-in-down delay-1">IMS Student &amp; Sports Enthusiast</p>
+    </div>
+    <!-- Wave transition at the bottom of hero -->
+    <div class="wave-bottom">
+      <svg viewBox="0 0 1440 320">
+        <path 
+          fill="#fdfdfd"
+          fill-opacity="1"
+          d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,106.7C672,107,768,149,864,160C960,171,1056,149,1152,149.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section about fade-in-up">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>
+          Hello! I’m Gabriel Zefaj, currently studying at IMS in Baden. Sports &amp; traveling
+          are my biggest passions – I play for FC Brugg and love staying active in nature,
+          whether it’s hiking or exploring new outdoor adventures.
+        </p>
+        <p>
+          I’ve visited places like New York City, Madrid, Barcelona, Sweden, and I’ll soon be
+          heading to Malaysia. Exploring different cultures and trying new things excites me.
+        </p>
+        <p>
+          I’m always keen on learning about modern technologies. Challenging myself with projects
+          and continuous personal development keeps me motivated.
+        </p>
+        
+        <!-- IMAGE GALLERY FOR 'ABOUT ME' -->
+        <div class="gallery fade-in-up">
+          <!-- Ersetze die Platzhalter durch deine echten Bilder (URL oder lokale Pfade) -->
+          <img 
+            src="https://via.placeholder.com/350x200?text=My+Photo+1" 
+            alt="About Me Photo 1" 
+            class="fade-in-up delay-1"
+          >
+          <img 
+            src="https://via.placeholder.com/350x200?text=My+Photo+2" 
+            alt="About Me Photo 2" 
+            class="fade-in-up delay-2"
+          >
+          <img 
+            src="https://via.placeholder.com/350x200?text=My+Photo+3" 
+            alt="About Me Photo 3" 
+            class="fade-in-up delay-3"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section projects fade-in-up">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-cards">
+          <!-- Project 1 -->
+          <article class="project-card fade-in-left delay-1">
+            <img 
+              src="https://via.placeholder.com/400x200?text=Project+1" 
+              alt="Project 1">
+            <h3>Project 1</h3>
+            <p>
+              BlaBla
+            </p>
+          </article>
+          <!-- Project 2 -->
+          <article class="project-card fade-in-left delay-2">
+            <img 
+              src="https://via.placeholder.com/400x200?text=Project+2" 
+              alt="Project 2">
+            <h3>Project 2</h3>
+            <p>
+              Blabla
+            </p>
+          </article>
+          <!-- Project 3 -->
+          <article class="project-card fade-in-left delay-3">
+            <img 
+              src="https://via.placeholder.com/400x200?text=Project+3" 
+              alt="Project 3">
+            <h3>Project 3</h3>
+            <p>
+              Blabla
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV SECTION -->
+    <section id="cv" class="section cv fade-in-up">
+      <div class="container">
+        <h2>CV</h2>
+        <p>
+          Download my CV in PDF or Word format for a detailed overview 
+          of my academic background, experiences, and skills.
+        </p>
+        <p>
+          <a href="cv.pdf" target="_blank" class="cv-download">Download CV (PDF)</a><br>
+          <a href="cv.docx" target="_blank" class="cv-download">Download CV (Word)</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Gabriel Zefaj – All rights reserved.</p>
+  </footer>
+
+  <!-- SCROLL ANIMATION SCRIPT -->
+  <script>
+    // Collect all elements we want to animate
+    const scrollElements = document.querySelectorAll(
+      ".fade-in-up, .fade-in-down, .fade-in-left, .fade-in-right"
+    );
+
+    // Check if element is in view
+    const elementInView = (el, offset = 1) => {
+      const elementTop = el.getBoundingClientRect().top;
+      return (
+        elementTop <= 
+        (window.innerHeight || document.documentElement.clientHeight) / offset
+      );
+    };
+
+    // Check if element is out of view (below the viewport)
+    const elementOutOfView = (el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      return (
+        elementTop > (window.innerHeight || document.documentElement.clientHeight)
+      );
+    };
+
+    // Show the element
+    const displayScrollElement = (element) => {
+      element.classList.add("scrolled");
+    };
+
+    // Hide the element (so it can re-animate on scroll)
+    const hideScrollElement = (element) => {
+      element.classList.remove("scrolled");
+    };
+
+    const handleScrollAnimation = () => {
+      scrollElements.forEach((el) => {
+        if (elementInView(el, 1.25)) {
+          displayScrollElement(el);
+        } else if (elementOutOfView(el)) {
+          // Remove class if out of view, so it replays the animation next time
+          hideScrollElement(el);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", () => {
+      handleScrollAnimation();
+    });
+
+    // Initial check on page load
+    handleScrollAnimation();
+  </script>
+</body>
+</html>
